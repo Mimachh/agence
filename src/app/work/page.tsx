@@ -26,11 +26,13 @@ function CaseStudies({
 }: {
   caseStudies: Array<MDXEntry<CaseStudy>>
 }) {
+
+
   return (
     <Container className="mt-40">
       <FadeIn>
         <h2 className="font-display text-2xl font-semibold text-neutral-950">
-          Case studies
+          Nos projets client
         </h2>
       </FadeIn>
       <div className="mt-10 space-y-20 sm:space-y-24 lg:space-y-32">
@@ -75,17 +77,17 @@ function CaseStudies({
                       href={caseStudy.href}
                       aria-label={`Read case study: ${caseStudy.client}`}
                     >
-                      Read case study
+                      Voir le projet
                     </Button>
                   </div>
-                  {caseStudy.testimonial && (
+                  {/* {caseStudy.testimonial && (
                     <Blockquote
                       author={caseStudy.testimonial.author}
                       className="mt-12"
                     >
                       {caseStudy.testimonial.content}
                     </Blockquote>
-                  )}
+                  )} */}
                 </div>
               </Border>
             </article>
@@ -137,7 +139,7 @@ function Clients() {
 }
 
 export const metadata: Metadata = {
-  title: 'Our Work',
+  title: 'Nos clients',
   description:
     'We believe in efficiency and maximizing our resources to provide the best value to our clients.',
 }
@@ -148,8 +150,8 @@ export default async function Work() {
   return (
     <>
       <PageIntro
-        eyebrow="Our work"
-        title="Proven solutions for real-world problems."
+        eyebrow="Nos clients"
+        title="Apporter de réelles solutions à vos besoins."
       >
         <p>
           We believe in efficiency and maximizing our resources to provide the

@@ -4,6 +4,7 @@ import { RootLayout } from '@/components/RootLayout'
 
 import '@/styles/tailwind.css'
 import { ModalProvider } from '@/context/ModalContext'
+import Modal from '@/components/modal/Modal'
 
 export const metadata: Metadata = {
   title: {
@@ -18,6 +19,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <body className="flex min-h-full flex-col">
         <RootLayout>
           <ModalProvider>
+          <Modal />
           {children}
           </ModalProvider>
         </RootLayout>

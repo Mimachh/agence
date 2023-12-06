@@ -38,7 +38,7 @@ export default function Modal() {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-gray-200 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 w-full md:max-w-xl sm:p-6">
+              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-muted px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 w-full md:max-w-xl sm:p-6">
                 <div className='absolute top-0 right-0 mr-2 mt-2'>
                   <X 
                   className='cursor-pointer'
@@ -48,7 +48,6 @@ export default function Modal() {
                 <div>
                   <div className="mt-3 text-center sm:mt-5">
                     <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
-                    {component}
                     </Dialog.Title>
                     <div className="mt-2">
                       {component === "simulation" ? (

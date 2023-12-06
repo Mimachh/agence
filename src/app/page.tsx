@@ -73,11 +73,11 @@ function CaseStudies({
   return (
     <>
       <SectionIntro
-        title="Les projets que nous développons"
+        title="Les clients que nous accompagnons"
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          Nous travaillons avec différents corps de métiers. Leur point commun est la volonté partagée d'accroître votre visibilité en ligne, d'optimiser votre chiffre d'affaires et de conquérir de nouveaux clients. Nous vous accompagnons dans cette démarche, en créant des solutions personnalisées qui propulsent votre entreprise vers le succès numérique que vous méritez
+          Nous travaillons avec différents corps de métiers. Leur point commun est la volonté partagée d'accroître leur visibilité en ligne, d'optimiser leur chiffre d'affaires et de conquérir de nouveaux clients. Nous vous accompagnons dans cette démarche, en créant des solutions personnalisées qui propulsent votre entreprise vers le succès numérique que vous méritez
         </p>
       </SectionIntro>
       <Container className="mt-16">
@@ -106,7 +106,7 @@ function CaseStudies({
                   <span className="text-neutral-300" aria-hidden="true">
                     /
                   </span>
-                  <span>Case study</span>
+                  <span>Projet client</span>
                 </p>
                 <p className="mt-6 font-display text-2xl font-semibold text-neutral-950">
                   {caseStudy.title}
@@ -178,7 +178,7 @@ export default async function Home() {
   return (
     <>
       <Container className="mt-24 sm:mt-32 md:mt-56">
-        <Modal />
+        
         <FadeIn className="max-w-3xl">
           <h1 className="font-display text-5xl font-medium tracking-tight text-accent-foreground [text-wrap:balance] sm:text-7xl">
             Agence digitale <span className='text-primary'>Mimach</span> - L'art de donner vie à votre activité en ligne.
