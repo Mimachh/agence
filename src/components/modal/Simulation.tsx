@@ -21,6 +21,9 @@ import Blog from '../forms/simulation/Blog'
 import Vitrine from '../forms/simulation/Vitrine'
 import { SendHorizontal } from 'lucide-react'
 import { Separator } from '../ui/separator'
+import axios from 'axios'
+import { useNotification } from '@/context/NotificationContext'
+import { useModal } from '@/context/ModalContext'
 const formSchema = z.object({
   ecommerce: z.boolean().default(false),
   nbProduits: z.number().nullable().default(0),
@@ -36,8 +39,9 @@ const formSchema = z.object({
   email: z.string().email(),
 })
 export default function Simulation() {
-
-
+  const [loading, setLoading] = useState(false)
+  const { showNotification } = useNotification();
+  const {setOpen} = useModal();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -57,9 +61,41 @@ export default function Simulation() {
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+    // console.log(values)
+
+    setLoading(true);
+
+    const apiUrl = `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/demande-de-devis/v1/submit`;
+    try {
+      axios.post(apiUrl, {
+        email: values.email,
+        ecommerce: values.ecommerce,
+        nbProduits: values.nbProduits,
+        ecommerceSeo: values.ecommerceSeo,
+        blog: values.blog,
+        blogSeo: values.blogSeo,
+        vitrine: values.vitrine,
+        isResa: values.isResa,
+        prix: price
+      })
+        .then(response => {
+          // console.log('Réponse de l\'API:', response.data.message);
+          showNotification('Nous avons bien reçu votre demande, nous vous recontacterons dès que possible !', 'success', 'Enregistrement réussi !');
+          form.reset()
+        })
+        .catch(error => {
+          // console.error('Erreur lors de la requête POST:', error.response.data.message);
+          showNotification(error.response.data.message, 'error', 'Erreur');
+        })
+        .finally(() => {
+          setLoading(false);
+          setOpen(false)
+        });
+
+    } catch (error) {
+      console.error('Erreur lors de la requête POST:', error);
+      setLoading(false);
+    }
   }
 
   // active / isSeo / NbProducts
@@ -179,11 +215,18 @@ export default function Simulation() {
                   <FormControl>
                     <div className='flex items-end gap-2 w-full relative'>
                       <Input type="email" placeholder="Email" {...field}
-                        className='h-[50px] bg-primary/60 rounded-[25px] text-sm ring-offset-none ring-offset-none focus-visible:ring-none'
+                        className='h-[50px] bg-transparent rounded-[25px] text-sm ring-offset-none ring-offset-none focus-visible:ring-none'
                       />
-                      <Button type="submit" className='rounded-[25px] absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1' variant="background">
-                        Être recontacté
-                        <SendHorizontal className='w-4 h-4' />
+                      <Button type="submit"
+                      className='rounded-[25px] absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1' variant="background">
+                        {loading ? (
+                          <span>Envoi en cours...</span>
+                        ) : (
+                          <>
+                            Être recontacté
+                            <SendHorizontal className='w-4 h-4' />
+                          </>
+                        )}
                       </Button>
                     </div>
 

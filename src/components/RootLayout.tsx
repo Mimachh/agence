@@ -181,6 +181,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
 
   return (
     <MotionConfig transition={shouldReduceMotion ? { duration: 0 } : undefined}>
+      
       <header>
         <div
           className="absolute left-0 right-0 top-2 z-40 pt-14"

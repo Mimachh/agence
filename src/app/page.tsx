@@ -9,23 +9,16 @@ import { List, ListItem } from '@/components/List'
 import { SectionIntro } from '@/components/SectionIntro'
 import { StylizedImage } from '@/components/StylizedImage'
 import { Testimonial } from '@/components/Testimonial'
-import logoBrightPath from '@/images/clients/bright-path/logo-light.svg'
-import logoFamilyFund from '@/images/clients/family-fund/logo-light.svg'
-import logoGreenLife from '@/images/clients/green-life/logo-light.svg'
-import logoHomeWork from '@/images/clients/home-work/logo-light.svg'
-import logoMailSmirk from '@/images/clients/mail-smirk/logo-light.svg'
-import logoNorthAdventures from '@/images/clients/north-adventures/logo-light.svg'
+
 import logoPhobiaDark from '@/images/clients/phobia/logo-dark.svg'
-import logoPhobiaLight from '@/images/clients/phobia/logo-light.svg'
-import logoUnseal from '@/images/clients/unseal/logo-light.svg'
 import imageLaptop from '@/images/laptop.jpg'
 import wordpress from "@/images/technos/wordpress.svg"
 import woocommerce from "@/images/technos/woocommerce.svg"
 import nextjs from "@/images/technos/nextjs.svg"
 import yoast from "@/images/technos/yoast.svg"
-import stripe from "@/images/technos/stripe.svg"
+
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
-import Modal from '@/components/modal/Modal'
+
 
 const clients = [
   ['Wordpress', wordpress],

@@ -5,6 +5,8 @@ import { RootLayout } from '@/components/RootLayout'
 import '@/styles/tailwind.css'
 import { ModalProvider } from '@/context/ModalContext'
 import Modal from '@/components/modal/Modal'
+import { NotificationProvider } from '@/context/NotificationContext'
+import Toast from '@/components/notifications/Toast'
 
 export const metadata: Metadata = {
   title: {
@@ -15,14 +17,21 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="h-full bg-neutral-950 text-base antialiased">
+    <html lang="fr" className="h-full bg-neutral-950 text-base antialiased">
       <body className="flex min-h-full flex-col">
+      <NotificationProvider>
+  
         <RootLayout>
+        <Toast />
           <ModalProvider>
-          <Modal />
-          {children}
+        
+              <Modal />
+         
+              {children}
+         
           </ModalProvider>
         </RootLayout>
+        </NotificationProvider>
       </body>
     </html>
   )
