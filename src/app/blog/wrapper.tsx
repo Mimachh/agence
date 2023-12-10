@@ -20,6 +20,25 @@ export default async function BlogArticleWrapper({
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: `
+              {
+                "@context": "http://schema.org",
+                "@type": "BlogPosting",
+                "headline": "${article.title}",
+                "datePublished": "${article.date}",
+                "articleBody": "${article.description}",
+                "author": {
+                  "@type": "Person",
+                  "name": "${article.author.name}",
+                  "jobTitle": "${article.author.role}"
+                }
+              }
+            `,
+        }}
+      />
       <Container as="article" className="mt-24 sm:mt-32 lg:mt-40">
         <FadeIn>
           <header className="mx-auto flex max-w-5xl flex-col text-center">
@@ -48,7 +67,7 @@ export default async function BlogArticleWrapper({
       {moreArticles.length > 0 && (
         <PageLinks
           className="mt-24 sm:mt-32 lg:mt-40"
-          title="More articles"
+          title="Plus d'articles"
           pages={moreArticles}
         />
       )}

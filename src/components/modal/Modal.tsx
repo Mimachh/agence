@@ -4,6 +4,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { useModal } from '@/context/ModalContext';
 import { X } from 'lucide-react';
 import Simulation from './Simulation';
+import BookingWrapper from '../booking/BookingWrapper';
 
 
 // interface ModalProps {
@@ -53,7 +54,7 @@ export default function Modal() {
                       {component === "simulation" ? (
                         <Simulation />
                       ) : (
-                        ""
+                        <BookingWrapper />
                       )}
                     </div>
                   </div>

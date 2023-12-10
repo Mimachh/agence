@@ -4,6 +4,18 @@ import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { Logo } from '@/components/Logo'
 import { socialMediaProfiles } from '@/components/SocialMedia'
+import { z } from 'zod'
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form'
+import { Input } from './ui/input'
+import { SendHorizontal } from 'lucide-react'
+import { useNotification } from '@/context/NotificationContext'
+import { useState } from 'react'
+import axios from 'axios'
+import { Button } from './ui/button'
+
+
 
 const navigation = [
   {
@@ -23,7 +35,7 @@ const navigation = [
     ],
   },
   {
-    title: 'Company',
+    title: 'L\'agence',
     links: [
       { title: 'A propos', href: '/about' },
       { title: 'Process', href: '/process' },
@@ -31,7 +43,7 @@ const navigation = [
     ],
   },
   {
-    title: 'Connect',
+    title: 'Réseaux',
     links: socialMediaProfiles,
   },
 ]
@@ -78,33 +90,100 @@ function ArrowIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 }
 
 function NewsletterForm() {
+
+  const [loading, setLoading] = useState(false)
+  const { showNotification } = useNotification(); 
+
+
+  const newsletterFormSchema = z.object({
+    email: z.string().email("Veuillez entrer une adresse e-mail valide."),
+  })
+
+  const newsletterForm = useForm<z.infer<typeof newsletterFormSchema>>({
+    resolver: zodResolver(newsletterFormSchema),
+    defaultValues: {
+      email: "",
+    },
+  })
+
+  function onSubmit(values: z.infer<typeof newsletterFormSchema>) {
+    setLoading(true);
+
+    const apiUrl = `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/custom-newsletter-subs/v1/submit`;
+    try {
+      axios.post(apiUrl, {
+        email: values.email,
+      })
+      .then(response => {
+        console.log('Réponse de l\'API:', response.data.message);
+        showNotification('Nous vous avons bien inscrit sur notre newsletter, merci !', 'success', 'Inscription réussie !');
+        newsletterForm.reset()
+      })
+      .catch(error => {
+        console.error('Erreur lors de la requête POST:', error.response.data.message);
+        showNotification(error.response.data.message, 'error', 'Erreur');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+
+    } catch (error) {
+      console.error('Erreur lors de la requête POST:', error);
+      setLoading(false);
+    }
+  }
+
+
   return (
-    <form className="max-w-sm">
-      <h2 className="font-display text-sm font-semibold tracking-wider text-accent-foreground">
-        M'inscrire à la newsletter
-      </h2>
-      <p className="mt-4 text-sm text-muted-foreground">
-        Inscrivez-vous pour être tenu au courant des dernières nouveautés et actualités.
-      </p>
-      <div className="relative mt-6">
-        <input
-          type="email"
-          placeholder="Adresse mail"
-          autoComplete="email"
-          aria-label="Adresse mail"
-          className="block w-full rounded-2xl border border-muted-foreground bg-transparent py-4 pl-6 pr-20 text-base/6 text-accent-foreground ring-4 ring-transparent transition placeholder:text-neutral-500 focus:border-background focus:outline-none focus:ring-muted"
-        />
-        <div className="absolute inset-y-1 right-1 flex justify-end">
-          <button
-            type="submit"
-            aria-label="Submit"
-            className="flex aspect-square h-full items-center justify-center rounded-xl bg-background text-muted transition hover:bg-secondary-foreground"
-          >
-            <ArrowIcon className="w-4" />
-          </button>
+    <Form {...newsletterForm}>
+      <form className="max-w-sm"
+        onSubmit={newsletterForm.handleSubmit(onSubmit)}
+      >
+        <h2 className="font-display text-sm font-semibold tracking-wider text-accent-foreground">
+          M'inscrire à la newsletter
+        </h2>
+        <p className="mt-4 text-sm text-muted-foreground">
+          Inscrivez-vous pour être tenu au courant des dernières nouveautés et actualités.
+        </p>
+        <div className="relative mt-6">
+          <FormField
+            control={newsletterForm.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem className='w-full text-left'>
+                <FormControl>
+                  <div className='flex items-end gap-2 w-full relative'>
+                    <Input type="email" placeholder="Email" {...field}
+                      className="
+                            ring-offset-none ring-offset-none focus-visible:ring-none
+                            block w-full h-[55px] rounded-2xl border border-muted-foreground bg-transparent py-4 pl-6 pr-20 text-base/6 text-accent-foreground ring-4 ring-transparent transition placeholder:text-neutral-500 focus:border-background focus:outline-none focus:ring-muted"
+                    />
+                    <div className="absolute inset-y-1 right-1 flex justify-end">
+                      <Button
+                        disabled={loading}
+                        type="submit"
+                        className="flex aspect-square h-full items-center justify-center rounded-xl bg-background text-muted transition hover:bg-secondary-foreground"
+                        variant="secondary"
+                      >
+                        {loading ? (
+                              <p>...</p>
+                            ) : (
+                        <>
+                        <ArrowIcon className="w-4" />
+                        </>
+                            )}
+                      </Button>
+                    </div>
+                  </div>
+
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
-      </div>
-    </form>
+      </form>
+    </Form>
   )
 }
 

@@ -44,6 +44,7 @@ export function ContactSection() {
       .then(response => {
         console.log('Réponse de l\'API:', response.data.message);
         showNotification('Nous avons bien reçu votre demande, nous vous recontacterons dès que possible !', 'success', 'Enregistrement réussi !');
+        newsletterForm.reset()
       })
       .catch(error => {
         console.error('Erreur lors de la requête POST:', error.response.data.message);
@@ -63,7 +64,7 @@ export function ContactSection() {
     <Container className="mt-24 sm:mt-32 lg:mt-40">
       <FadeIn className="-mx-6 rounded-4xl ">
 
-        <div className="relative isolate overflow-hidden bg-background px-6 py-24 shadow-2xl sm:rounded-3xl sm:px-24 xl:py-32">
+        <div className="relative isolate overflow-hidden bg-background px-6 py-24 shadow-2xl sm:rounded-3xl sm:px-24 xl:py-32"  id='contact'>
           <h2 className="mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Parlons de votre projet.
           </h2>

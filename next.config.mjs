@@ -16,6 +16,7 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
 }
 
+
 function remarkMDXLayout(source, metaName) {
   let parser = Parser.extend(jsx())
   let parseOptions = { ecmaVersion: 'latest', sourceType: 'module' }
