@@ -42,7 +42,7 @@ export default function Calendar(props: CalendarProps) {
     // Ici je récupère les slots du mois en cours, avec les jours non travaillé qui ne sont pas là.
     const currentMonthDates = getFormattedCurrentMonthDates(slots, newDays);
     // Les jours offs de l'employe
-    const formattedDayOffDates = getFormattedDayOffDates(employee.dayOffList);
+    const formattedDayOffDates = getFormattedDayOffDates(employee?.dayOffList);
     // On retire les jours off du tableau de slots du mois.
     const filteredCurrentMonthDates = currentMonthDates.filter((date) => !formattedDayOffDates.includes(date));
 
@@ -76,18 +76,18 @@ export default function Calendar(props: CalendarProps) {
     }
 
     return (
-        <div>
+        <div className=''>
             <TitleStep
                 title='Choisissez un jour'
             />
             <div className="flex items-center">
-                <h2 className="flex-auto text-sm font-semibold text-gray-900 capitalize">
+                <h2 className="flex-auto text-sm font-semibold text-background capitalize">
                     {format(firstDayCurrentMonth, 'MMMM yyyy', { locale: fr })}
                 </h2>
                 <button
                     onClick={previousMonth}
                     type="button"
-                    className="-my-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
+                    className="-my-1.5 flex flex-none items-center justify-center p-1.5 text-background hover:text-muted-foreground"
                 >
                     <span className="sr-only">Previous month</span>
                     <ChevronLeft className="h-5 w-5" aria-hidden="true" />
@@ -95,13 +95,13 @@ export default function Calendar(props: CalendarProps) {
                 <button
                     onClick={nextMonth}
                     type="button"
-                    className="-my-1.5 -mr-1.5 ml-2 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
+                    className="-my-1.5 -mr-1.5 ml-2 flex flex-none items-center justify-center p-1.5 text-background hover:text-muted-foreground"
                 >
                     <span className="sr-only">Next month</span>
                     <ChevronRight className="h-5 w-5" aria-hidden="true" />
                 </button>
             </div>
-            <div className="mt-10 grid grid-cols-7 text-center text-xs leading-6 text-gray-500">
+            <div className="mt-10 grid grid-cols-7 text-center text-xs leading-6 text-muted-foreground">
                 <div>Lun</div>
                 <div>Mar</div>
                 <div>Mer</div>
@@ -114,7 +114,7 @@ export default function Calendar(props: CalendarProps) {
                 {newDays.map((day, dayIdx) => (
                     <div key={day.toString()}
                         className={classNames(
-                            dayIdx === 0 && colStartClasses[getDay(day)],
+                            dayIdx === 0 ? colStartClasses[getDay(day)] : "col-start-0",
                             'py-2 rounded-full relative')
                         }>
                         <button
@@ -126,45 +126,39 @@ export default function Calendar(props: CalendarProps) {
                             }}
                             disabled={day < today || !filteredCurrentMonthDates.includes(format(day, 'yyyy-MM-dd')) && !isToday(day) || countSlotsForDay(day, slots) == 0}
                             style={{
-                                backgroundColor: isEqual(day, selectedDay) && isToday(day) ? service.color : undefined,
+                                // backgroundColor: isEqual(day, selectedDay) && isToday(day) ? service.color : undefined,
                                 // background: isEqual(day, selectedDay) && isToday(day) ? `linear-gradient(0deg, transparent 50%, ${service.color} 50%), linear-gradient(0deg, orange 50%, transparent 50%)` : undefined,
                                 // background:`linear-gradient(0deg, transparent 50%, transparent 50%), linear-gradient(0deg, orange 50%, transparent 50%)`,
 
                                 color: !isEqual(day, selectedDay) && isToday(day) ? service.color : undefined,
                             }}
                             className={classNames(
-                                isEqual(day, selectedDay) && 'text-white',
+                                isEqual(day, selectedDay) ? 'text-primary bg-background/90' : "",
                                 // !isEqual(day, selectedDay) && isToday(day) && 'text-indigo-600',
-                                !isEqual(day, selectedDay) && !isToday(day) && isSameMonth(day, firstDayCurrentMonth) && 'text-gray-900',
-                                !isEqual(day, selectedDay) && !isToday(day) && !isSameMonth(day, today) && 'text-gray-400',
+                                !isEqual(day, selectedDay) && !isToday(day) && isSameMonth(day, firstDayCurrentMonth) ? 'text-gray-900' : "",
+                                !isEqual(day, selectedDay) && !isToday(day) && !isSameMonth(day, today) ? 'text-gray-400' : "",
                                 // isEqual(day, selectedDay) && isToday(day) && `bg-[${color.toLowerCase()}]`,
-                                isEqual(day, selectedDay) && !isToday(day) && 'bg-gray-900',
-                                !isEqual(day, selectedDay) && 'hover:bg-gray-200',
-                                (filteredCurrentMonthDates.includes(format(day, 'yyyy-MM-dd')) && !isEqual(day, selectedDay)) && 'bg-gray-50',
-                                (isEqual(day, selectedDay) || isToday(day)) && 'font-semibold',
-                                'mx-auto flex h-8 w-8 items-center justify-center rounded-full disabled:text-gray-300 disabled:hover:bg-white'
+                                isEqual(day, selectedDay) && !isToday(day) ? 'bg-primary border border-background text-background' : "",
+                                !isEqual(day, selectedDay) ? 'hover:bg-primary hover:border hover:border-background' : "",
+                                (filteredCurrentMonthDates.includes(format(day, 'yyyy-MM-dd')) && !isEqual(day, selectedDay)) ? 'bg-primary/50' : "",
+                                (isEqual(day, selectedDay) || isToday(day)) ? 'font-semibold' : "",
+                                'mx-auto flex h-8 w-8 md:h-10 md:w-10 rounded-full items-center justify-center  disabled:text-gray-300 disabled:hover:bg-white disabled:hover:border-none transition-all duration-100 ease-in'
                             )}
                         >
                             <div className="relative">
                                 <time dateTime={format(day, "yyyy-MM-dd")}>{format(day, 'd')}</time>
-
-                               
                                 {countSlotsForDay(day, slots) === 0 && (
                                     <span
-                                        className='absolute right-1/2 translate-y-1/2 translate-x-1/2 bottom-0 p-1 rounded-full text-xs text-gray-300'>
+                                        className='absolute right-1/2 translate-y-1/2 translate-x-1/2 bottom-0 p-1 rounded-full text-[11px] text-gray-300'>
                                              {/* Si le jour a 0 créneau, qu'il est dans les jours offs, et qu'il n'apparait pas dans la liste des jours travaillé de l'employé alors il est fermé */}
-                                        {(formattedDayOffDates.includes(format(day, 'yyyy-MM-dd')) || !employee.weekDayList.some((dayOff) => dayOff.dayIndex === getDay(day))) ? (
+                                        {(formattedDayOffDates.includes(format(day, 'yyyy-MM-dd')) || !employee?.weekDayList.some((dayOff) => dayOff.dayIndex === getDay(day))) ? (
                                             <>Fermé</>
                                         ) : (isAfter(day, today) ? (
                                             <>Complet</>
                                         ) : '')}
                                     </span>
                                 )}
-
-
-
                             </div>
-
                         </button>
                     </div>
                 ))}

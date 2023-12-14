@@ -22,7 +22,7 @@ export interface dayOffListArray {
 export interface CalendarProps {
   service: ServiceProps;
   slots: SlotsProps[];
-  employee: UserProps | undefined;
+  employee?: UserProps;
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>
   currentStep: number;
   setDaySelected: (value: string) => void;

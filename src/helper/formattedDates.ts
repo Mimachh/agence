@@ -29,7 +29,8 @@ export function getFormattedCurrentMonthDates(slots: Record<string, any>, newDay
 }
 
 
-export function durationFormatter(duration: number) {
+export function durationFormatter(duration: number | undefined) {
+    if (!duration) return "";
     return duration / 60;
 }
 

@@ -47,9 +47,9 @@ function PageLink({ page }: { page: Page }) {
         <Link
           href={page.href}
           className="mt-6 flex gap-x-3 text-base font-semibold text-neutral-950 transition hover:text-neutral-700"
-          aria-label={`Read more: ${page.title}`}
+          aria-label={`Voir plus: ${page.title}`}
         >
-          Read more
+          Voir plus
           <ArrowIcon className="w-6 flex-none fill-current" />
           <span className="absolute inset-0" />
         </Link>

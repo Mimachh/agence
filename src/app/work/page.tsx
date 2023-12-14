@@ -75,7 +75,7 @@ function CaseStudies({
                   <div className="mt-8 flex">
                     <Button
                       href={caseStudy.href}
-                      aria-label={`Read case study: ${caseStudy.client}`}
+                      aria-label={`Voir le projet: ${caseStudy.client}`}
                     >
                       Voir le projet
                     </Button>
@@ -141,7 +141,7 @@ function Clients() {
 export const metadata: Metadata = {
   title: 'Nos clients',
   description:
-    'We believe in efficiency and maximizing our resources to provide the best value to our clients.',
+    'Apporter de réelles solutions à vos besoins.',
 }
 
 export default async function Work() {
@@ -154,23 +154,11 @@ export default async function Work() {
         title="Apporter de réelles solutions à vos besoins."
       >
         <p>
-          We believe in efficiency and maximizing our resources to provide the
-          best value to our clients. The primary way we do that is by re-using
-          the same five projects we’ve been developing for the past decade.
+         Nous maximisons nos efforts pour apporter pleine satisfaction à nos clients, et répondre le plus efficacement possible à leurs besoins.
         </p>
       </PageIntro>
 
       <CaseStudies caseStudies={caseStudies} />
-
-      <Testimonial
-        className="mt-24 sm:mt-32 lg:mt-40"
-        client={{ name: 'Mail Smirk', logo: logoMailSmirk }}
-      >
-        We approached <em>Studio</em> because we loved their past work. They
-        delivered something remarkably similar in record time.
-      </Testimonial>
-
-      <Clients />
 
       <ContactSection />
     </>

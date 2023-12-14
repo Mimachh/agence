@@ -21,9 +21,9 @@ const navigation = [
   {
     title: 'Projets',
     links: [
-      { title: 'Prothésiste ongulaire', href: '/work/family-fund' },
-      { title: 'Barbier', href: '/work/family-fund' },
-      { title: 'Avocat', href: '/work/family-fund' },
+      { title: 'Prothésiste ongulaire', href: '/work/prothesiste-ongulaire' },
+      { title: 'Barbier', href: '/work/salon-coiffure' },
+      // { title: 'Avocat', href: '/work/family-fund' },
       {
         title: (
           <>
@@ -39,7 +39,6 @@ const navigation = [
     links: [
       { title: 'A propos', href: '/about' },
       { title: 'Process', href: '/process' },
-      { title: 'Contact', href: '/contact' },
     ],
   },
   {
