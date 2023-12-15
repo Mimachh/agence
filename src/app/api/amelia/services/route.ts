@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 
-export async function GET(request: NextRequest, res) {
+export async function GET(request: NextRequest) {
     const ameliaUrl = process.env.AMELIA_URL;
     
     let params: any = {}; for (const [key, val] of request.nextUrl.searchParams.entries()) { params[key] = val; }
@@ -31,8 +31,3 @@ export async function GET(request: NextRequest, res) {
         return NextResponse.json({ error: "Une erreur est survenue" }, { status: 500 });
       }
   }
-
-export async function POST(request) {
-    // Do whatever you want
-    return NextResponse.json({ message: "Hello World" }, { status: 200 });
-}
