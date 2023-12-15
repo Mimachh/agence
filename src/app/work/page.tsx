@@ -20,6 +20,7 @@ import logoPhobia from '@/images/clients/phobia/logo-dark.svg'
 import logoUnseal from '@/images/clients/unseal/logo-dark.svg'
 import { formatDate } from '@/lib/formatDate'
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
+import Analytics from '@/components/Analytics'
 
 function CaseStudies({
   caseStudies,
@@ -149,12 +150,13 @@ export default async function Work() {
 
   return (
     <>
+      <Analytics />
       <PageIntro
         eyebrow="Nos clients"
         title="Apporter de réelles solutions à vos besoins."
       >
         <p>
-         Nous maximisons nos efforts pour apporter pleine satisfaction à nos clients, et répondre le plus efficacement possible à leurs besoins.
+          Nous maximisons nos efforts pour apporter pleine satisfaction à nos clients, et répondre le plus efficacement possible à leurs besoins.
         </p>
       </PageIntro>
 

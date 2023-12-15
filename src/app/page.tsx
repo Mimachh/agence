@@ -18,7 +18,7 @@ import nextjs from "@/images/technos/nextjs.svg"
 import yoast from "@/images/technos/yoast.svg"
 
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
-
+import Analytics from '@/components/Analytics'
 
 const clients = [
   ['Wordpress', wordpress],
@@ -46,7 +46,7 @@ function Clients() {
             {clients.map(([client, logo]) => (
               <li key={client}>
                 <FadeIn className='flex items-center gap-3 group'>
-                  <Image src={logo} alt={client} unoptimized className='group-hover:scale-[130%] transition-all'/>
+                  <Image src={logo} alt={client} unoptimized className='group-hover:scale-[130%] transition-all' />
                   <p className='text-muted text-md font-medium'>{client}</p>
                 </FadeIn>
               </li>
@@ -127,7 +127,7 @@ function Services() {
         eyebrowClass="text-primary"
       >
         <p className='text-muted-foreground'>
-        Chez Mimach, nous sommes bien plus qu'une agence digitale – nous sommes vos partenaires dévoués dans la transformation en ligne. Explorez notre gamme complète de services conçus pour propulser votre activité vers de nouveaux sommets.
+          Chez Mimach, nous sommes bien plus qu'une agence digitale – nous sommes vos partenaires dévoués dans la transformation en ligne. Explorez notre gamme complète de services conçus pour propulser votre activité vers de nouveaux sommets.
         </p>
       </SectionIntro>
       <Container className="mt-16">
@@ -143,16 +143,16 @@ function Services() {
           </div>
           <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-[33rem] lg:pl-4">
             <ListItem title="Développement web">
-            Nous nous spécialisons dans la conception de sites web vitrine magnifiques et de haute qualité pour  améliorer votre visibilité.
+              Nous nous spécialisons dans la conception de sites web vitrine magnifiques et de haute qualité pour  améliorer votre visibilité.
             </ListItem>
             <ListItem title="Module de réservation">
-            Simplifiez la gestion de votre emploi du temps avec notre solution de réservation en ligne. Nous vous offrons un moyen efficace et convivial pour permettre à vos clients de réserver leurs services en quelques clics. Fini les plannings compliqués, notre module de réservation vous aide à optimiser votre temps et à offrir une expérience pratique à vos clients.
+              Simplifiez la gestion de votre emploi du temps avec notre solution de réservation en ligne. Nous vous offrons un moyen efficace et convivial pour permettre à vos clients de réserver leurs services en quelques clics. Fini les plannings compliqués, notre module de réservation vous aide à optimiser votre temps et à offrir une expérience pratique à vos clients.
             </ListItem>
             <ListItem title="E-commerce">
-            Stimulez vos ventes, boostez votre chiffre d'affaires. Notre service e-commerce offre une plateforme puissante, conçue pour maximiser la conversion et offrir une expérience d'achat exceptionnelle, propulsant ainsi votre réussite commerciale.
+              Stimulez vos ventes, boostez votre chiffre d'affaires. Notre service e-commerce offre une plateforme puissante, conçue pour maximiser la conversion et offrir une expérience d'achat exceptionnelle, propulsant ainsi votre réussite commerciale.
             </ListItem>
             <ListItem title="SEO - Référencement">
-            Augmentez votre visibilité en ligne et attirez plus de clients grâce à notre expertise en optimisation SEO. Nous positionnons votre site en tête des résultats de recherche, stimulant ainsi votre présence digitale et propulsant votre entreprise vers de nouveaux sommets.
+              Augmentez votre visibilité en ligne et attirez plus de clients grâce à notre expertise en optimisation SEO. Nous positionnons votre site en tête des résultats de recherche, stimulant ainsi votre présence digitale et propulsant votre entreprise vers de nouveaux sommets.
             </ListItem>
           </List>
         </div>
@@ -170,14 +170,15 @@ export default async function Home() {
   let caseStudies = (await loadCaseStudies()).slice(0, 3)
   return (
     <>
+      <Analytics />
       <Container className="mt-24 sm:mt-32 md:mt-56">
-        
+
         <FadeIn className="max-w-3xl">
           <h1 className="font-display text-5xl font-medium tracking-tight text-accent-foreground [text-wrap:balance] sm:text-7xl">
             Agence digitale <span className='text-primary'>Mimach</span> - L'art de donner vie à votre activité en ligne.
           </h1>
           <p className="mt-6 text-xl text-muted-foreground">
-          Découvrez l'univers exclusif de Mimach, votre partenaire digital dédié. De la création élégante de sites vitrines à des boutiques en ligne intuitives, en passant par des modules de réservation en ligne sur mesure et une optimisation SEO de pointe, nous faisons briller votre entreprise.
+            Découvrez l'univers exclusif de Mimach, votre partenaire digital dédié. De la création élégante de sites vitrines à des boutiques en ligne intuitives, en passant par des modules de réservation en ligne sur mesure et une optimisation SEO de pointe, nous faisons briller votre entreprise.
           </p>
         </FadeIn>
       </Container>
@@ -190,9 +191,9 @@ export default async function Home() {
         className="mt-24 sm:mt-32 lg:mt-40"
         client={{ name: 'Bill Gates', logo: logoPhobiaDark }}
       >
-      Dans le monde digital d'aujourd'hui, si votre entreprise n'est pas sur internet, alors elle n'existe tout simplement pas.
+        Dans le monde digital d'aujourd'hui, si votre entreprise n'est pas sur internet, alors elle n'existe tout simplement pas.
       </Testimonial>
-{/* "Votre site web est la fenêtre par laquelle le monde voit votre entreprise." - Jacqueline V. Twillie */}
+      {/* "Votre site web est la fenêtre par laquelle le monde voit votre entreprise." - Jacqueline V. Twillie */}
       <Services />
 
       <ContactSection />

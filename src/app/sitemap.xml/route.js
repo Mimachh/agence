@@ -2,7 +2,7 @@
  
 // import { getSortedPostsData } from "../lib/posts";
  
-// const URL = "https://mimach.fr";
+const URL = "https://mimach.fr";
  
 // function generateSiteMap(posts) {
 //   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -17,6 +17,12 @@
 //       <url>
 //        <loc>${URL}/work</loc>
 //      </url>
+//      <url>
+//         <loc>${URL}/work/prothesiste-ongulaire</loc>
+//     </url>
+//     <url>
+//         <loc>${URL}/work/salon-coiffure</loc>
+//     </url>
 //      ${posts
 //        .map(({ id }) => {
 //          return `
@@ -29,19 +35,43 @@
 //    </urlset>
 //  `;
 // }
+
+function generateSiteMap() {
+    return `<?xml version="1.0" encoding="UTF-8"?>
+     <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+       <!--We manually set the two URLs we know already-->
+       <url>
+         <loc>${URL}</loc>
+       </url>
+       <url>
+         <loc>${URL}/process</loc>
+       </url>
+        <url>
+         <loc>${URL}/work</loc>
+       </url>
+       <url>
+          <loc>${URL}/work/prothesiste-ongulaire</loc>
+      </url>
+      <url>
+          <loc>${URL}/work/salon-coiffure</loc>
+      </url>
+     </urlset>
+   `;
+  }
  
-// export function GET() {
+export function GET() {
 //   const posts = getSortedPostsData();
 //   const body = generateSiteMap(posts);
+const body = generateSiteMap();
  
-//   return new Response(body, {
-//     status: 200,
-//     headers: {
-//       "Cache-control": "public, s-maxage=86400, stale-while-revalidate",
-//       "content-type": "application/xml",
-//     },
-//   });
-// }
+  return new Response(body, {
+    status: 200,
+    headers: {
+      "Cache-control": "public, s-maxage=86400, stale-while-revalidate",
+      "content-type": "application/xml",
+    },
+  });
+}
 
 
 

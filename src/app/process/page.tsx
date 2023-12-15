@@ -14,6 +14,7 @@ import { TagList, TagListItem } from '@/components/TagList'
 import imageLaptop from '@/images/laptop.jpg'
 import imageMeeting from '@/images/meeting.jpg'
 import imageWhiteboard from '@/images/whiteboard.jpg'
+import Script from 'next/script'
 
 function Section({
   title,
@@ -59,7 +60,7 @@ function Discover() {
       <div className="space-y-6 text-base text-neutral-600">
         <p>
           Le point de départ essentiel est de correctement définir vos{' '}
-          <strong className="font-semibold text-neutral-950">besoins</strong> et{' '} <strong className="font-semibold text-neutral-950">objectifs</strong>, 
+          <strong className="font-semibold text-neutral-950">besoins</strong> et{' '} <strong className="font-semibold text-neutral-950">objectifs</strong>,
           en nous imprégnant de votre métier et votre façon de travailler.
         </p>
         <p>
@@ -89,7 +90,7 @@ function Build() {
   return (
     <Section title="Développement" image={{ src: imageLaptop, shape: 1 }}>
       <div className="space-y-6 text-base text-neutral-600">
-      <p>
+        <p>
           A partir de la phase de découverte nous développerons votre projet dans un{' '}
           <strong className="font-semibold text-neutral-950">
             délai
@@ -126,7 +127,7 @@ function Deliver() {
           du projet final.
         </p>
         <p>
-          Nous effectuons une dernière vague de{' '}           
+          Nous effectuons une dernière vague de{' '}
           <strong className="font-semibold text-neutral-950">
             tests
           </strong> pour vérifier que tout fonctionne comme prévu.
@@ -218,10 +219,22 @@ export const metadata: Metadata = {
 export default function Process() {
   return (
     <>
+      <>
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_ANALYTICS}`} />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', ${process.env.NEXT_PUBLIC_ANALYTICS});
+          `}
+        </Script>
+      </>
       <PageIntro eyebrow="Notre façon de travailler" title="Comment nous procédons">
         <p>
-        Dans le monde en constante évolution d'aujourd'hui, chaque entreprise a des idées, des aspirations et des objectifs uniques. <br /><br />
-        Transformer ces idées en <strong>succès digital</strong>, c'est notre métier.
+          Dans le monde en constante évolution d'aujourd'hui, chaque entreprise a des idées, des aspirations et des objectifs uniques. <br /><br />
+          Transformer ces idées en <strong>succès digital</strong>, c'est notre métier.
         </p>
       </PageIntro>
 
