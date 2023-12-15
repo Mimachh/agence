@@ -45,7 +45,7 @@ export default function BookingWrapper() {
   const [slots, setSlots] = useState<SlotsProps[]>([]);
   const [employee, setEmployee] = useState<UserProps>();
   const [currentStep, setCurrentStep] = useState(1);
-  const [daySelected, setDaySelected] = useState<string>('');
+  const [daySelected, setDaySelected] = useState<any>('');
   const [selectedDaySlots, setSelectedDaySlots] = useState<SlotsProps>({});
   const [slotSelectedOccupied, setSlotSelectedOccupied] = useState<SlotsProps>({});
   const [occupiedSlots, setOccupiedSlots] = useState<SlotsProps[]>([]);
