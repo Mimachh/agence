@@ -20,7 +20,6 @@ import { CalendarDays } from 'lucide-react';
 import Intro from './Intro';
 import { formatDateTimeForStore } from '@/helper/formattedDates';
 import axios from 'axios';
-import { headers } from '@/helper/ameliaHeaders';
 import Confirmation from './Confirmation';
 import { useModal } from '@/context/ModalContext';
 import { BookingProps } from '@/types/BookingTypes';
