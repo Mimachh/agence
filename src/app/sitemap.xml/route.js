@@ -42,3 +42,11 @@
 //     },
 //   });
 // }
+
+
+
+// ├ ○ /process                             555 B           176 kB
+// ├ λ /sitemap.xml                         0 B                0 B
+// ├ ○ /work                                1.58 kB         188 kB
+// ├ ○ /work/prothesiste-ongulaire          1.58 kB         188 kB
+// └ ○ /work/salon-coiffure 

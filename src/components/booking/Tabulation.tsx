@@ -9,7 +9,7 @@ interface Step {
 export interface TabulationProps {
     setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
     currentStep: number;
-    setSelectedSlotIndex: (value: number) => void;
+    setSelectedSlotIndex: (value?: number) => void;
     color?: string;
     daySelected: string;
     hourSelected: string;
@@ -36,7 +36,7 @@ const Tabulation: React.FC<TabulationProps> = ({ setCurrentStep, currentStep, se
         setSteps([...updatedSteps]);
 
         if (currentStep === 1) {
-            setSelectedSlotIndex(null);
+            setSelectedSlotIndex(undefined);
         }
     }, [currentStep, setSelectedSlotIndex]);
 
