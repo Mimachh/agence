@@ -163,7 +163,7 @@ function Services() {
 
 export const metadata: Metadata = {
   description:
-    'We are a development studio working at the intersection of design and technology.',
+    'Transformez votre présence en ligne avec notre agence digitale experte en conception de sites web sur mesure. Du design élégant à la fonctionnalité avancée, nous faisons passer votre entreprise au niveau supérieur. Découvrez des solutions web personnalisées pour professionnels, conçues pour impressionner et performer.',
 }
 
 export default async function Home() {

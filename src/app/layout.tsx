@@ -10,8 +10,8 @@ import Toast from '@/components/notifications/Toast'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - Studio',
-    default: 'Studio - Award winning developer studio based in Denmark',
+    template: 'MimacH',
+    default: 'Mimach - Agence digitale pour professionnels',
   },
 }
 
