@@ -231,7 +231,7 @@ export default function BookingWrapper() {
 
 
   if (isServiceLoading || isSlotLoading) {
-    return <div>Chargement...</div>
+    return <div className='min-h-[350px]'>Chargement...</div>
   }
 
   if (serviceError || slotError) {

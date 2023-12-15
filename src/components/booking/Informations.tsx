@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from '../ui/textarea'
 import { Checkbox } from '../ui/checkbox';
 import TitleStep from '../TitleStep'
+import Link from 'next/link'
 
 
 interface InformationsProps {
@@ -125,7 +126,8 @@ export default function Informations(props: InformationsProps) {
                             </FormControl>
                             <div className="space-y-1 leading-none">
                                 <FormLabel>
-                                    J'accepte les <a className='text-muted-foreground underline' href="/conditions">conditions d'utilisation</a>.
+                                    
+                                    J'accepte les <Link className='text-muted-foreground underline' href={"/mentions-legales"}>conditions d'utilisation</Link>.
                                 </FormLabel>
                             </div>
                         </div>
